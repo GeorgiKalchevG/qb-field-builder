@@ -1,0 +1,92 @@
+@mixin secondary($color:var(--ink)) {
+  &.secondary {
+    color: $color;
+    background: transparent;
+    padding: 0.6rem 0;
+    border: unset;
+  }
+  &.disabled {
+    cursor: not-allowed;
+    color: var(--neutral-accent);
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: var(--ink);
+
+  &.small {
+    padding: 0 0.6rem;
+    font-size: unset;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.positive {
+    color: white;
+    background: var(--positive);
+
+    @include secondary(var(--positive));
+
+    &:hover {
+      border-color: var(--positive-accent);
+    }
+  }
+
+  &.neutral {
+    &:hover {
+      border-color: var(--neutral-accent);
+    }
+
+    @include secondary();
+  }
+
+  &.negative {
+    color: white;
+    background: var(--negative);
+
+    &:hover {
+      border-color: var(--negative-accent);
+    }
+
+    @include secondary(var(--negative));
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: var(--neutral-accent-50);
+    color: var(--neutral-accent);
+  }
+
+  .loading {
+    position: absolute;
+    width: 25px;
+    aspect-ratio: 1;
+    display: grid;
+    border-radius: 50%;
+    background:
+        linear-gradient(0deg, rgb(0 0 0/50%) 30%, #0000 0 70%, rgb(0 0 0/100%) 0) 50%/8% 100%,
+        linear-gradient(90deg, rgb(0 0 0/25%) 30%, #0000 0 70%, rgb(0 0 0/75%) 0) 50%/100% 8%;
+    background-repeat: no-repeat;
+    animation: l23 2s infinite steps(60);
+  }
+}
+
+@keyframes l23 {
+  100% {
+    transform: rotate(1turn)
+  }
+}

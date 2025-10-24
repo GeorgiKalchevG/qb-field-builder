@@ -1,0 +1,141 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 250px;
+
+  .container {
+    position: relative;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 42px;
+    width: 100%;
+    padding-bottom: 4px;
+    flex-direction: column;
+    align-items: start;
+    max-height: 300px;
+    flex-wrap: nowrap;
+  }
+
+  .elements {
+    overflow-y: auto;
+    width: 100%;
+  }
+
+
+  .line {
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 .5rem;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    &:hover {
+      background: var(--neutral);
+    }
+
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+  }
+
+  .lineText {
+    font-size: 0.9rem;
+    display: block;
+    text-wrap: wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    padding-right: 0.5rem;
+
+    span:nth-child(2) {
+      background-color: var(--neutral);
+      color: var(--negative);
+    }
+  }
+
+  .removeBtn {
+    border: none;
+    padding: 0 2px;
+    transform: scale(.7);
+  }
+
+  .inputWrapper {
+    display: flex;
+    width: 90%;
+
+    .input[type='text'] {
+      padding: 4px 8px;
+      border: none;
+      outline: none;
+      color: var(--ink);
+    }
+  }
+
+
+  .hint {
+    position: absolute;
+    color: var(--light-charcoal);
+    font-size: 1rem;
+    right: -1rem;
+    top: -0.3rem;
+    cursor: pointer;
+  }
+
+  .counter {
+    position: absolute;
+    color: var(--light-charcoal);
+    bottom: 0;
+    right: -2.4rem;
+    font-size: .7rem;
+  }
+
+  .errorContainer {
+    position: absolute;
+    bottom: -2rem;
+    height: 2rem;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+  }
+}
+.hiddenField{
+  display: none;
+}
+@media (max-width: 640px) {
+  .wrapper {
+    .inputWrapper {
+      .input[type='text'] {
+        padding: 4px 8px;
+        border: none;
+        outline: none;
+        color: var(--ink);
+      }
+    }
+
+    .hint {
+      left: 4rem;
+      top: -1.5rem;
+      cursor: pointer;
+    }
+
+    .counter {
+      position: absolute;
+      color: var(--light-charcoal);
+      bottom: -1rem;
+      left: calc(100% - 1.4rem);
+      font-size: .7rem;
+    }
+
+    .errorContainer {
+      width: 90%;
+    }
+  }
+}
+
+
+
+
+
