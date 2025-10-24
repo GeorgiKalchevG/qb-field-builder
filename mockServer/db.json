@@ -1,10 +1,11 @@
 {
   "fields": [
     {
-      "id": "4039",
       "label": "USA",
-      "default": "- Wyoming (WY)xxxxxxs",
+      "default": "- Wyoming (WY)",
+      "required": true,
       "choices": [
+        "- Alabama (AL)",
         "- Alaska (AK)",
         "- Arizona (AZ)",
         "- Arkansas (AR)",
@@ -53,23 +54,20 @@
         "- Washington (WA)",
         "- West Virginia (WV)",
         "- Wisconsin (WI)",
-        "- Wyoming (WY)",
-        "- Wyoming (WY)xxxxxxs"
+        "- Wyoming (WY)"
       ],
-      "displayAlpha": "true",
-      "required": true
+      "displayAlpha": false,
+      "id": "4039"
     },
     {
       "label": "Europe",
       "default": "England",
+      "required": true,
       "choices": [
         "Germany",
-        "Poland",
-        "England",
-        "dasdasd"
+        "England"
       ],
       "displayAlpha": "true",
-      "required": true,
       "id": "cd53"
     },
     {

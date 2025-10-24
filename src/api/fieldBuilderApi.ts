@@ -88,11 +88,11 @@ export const useSaveSelectField = (onSuccessCallback: (id: string) => void) => {
     return useMutation({
         mutationFn,
         onSuccess: async (data, payload) => {
-            const response = data
             await queryClient.invalidateQueries({ queryKey: baseKey, exact: true })
             await queryClient.invalidateQueries({ queryKey: ['fields', payload.id] })
-            updateUrl({ name: 'formId', data: response.id })
-            onSuccessCallback(response.id)
+            updateUrl({ name: 'formId', data: data.id })
+            onSuccessCallback(data.id)
+            console.info({ data })
             deleteItem()
         }
     })

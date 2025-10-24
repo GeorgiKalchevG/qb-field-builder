@@ -7,6 +7,9 @@ import { useUrl } from './hooks/useUrl.ts'
 import { useQueryClient } from '@tanstack/react-query'
 import { Button } from './components/Button'
 import { SubmitButton } from './components/Button/SubmitButton'
+import { FormWrapper } from './components/FormWrapper'
+import { DEFAULT_VALUES } from './components/FieldBuilder/types.ts'
+
 
 function App() {
     const { queryKey } = existingFieldsQueryParams()
@@ -29,7 +32,9 @@ function App() {
         <>
             <Fields setId={setId} id={id} />
             <TitledContainer title={'Field Builder'}>
-                <FieldBuilder fieldId={id} updateId={setId} />
+                <FormWrapper defaultValues={DEFAULT_VALUES}>
+                    <FieldBuilder fieldId={id} updateId={setId} />
+                </FormWrapper>
             </TitledContainer>
             {id && <Button variant='negative' onClick={handleFormDeletion}>DeleteForm</Button>}
             <SubmitButton variant='neutral'>random button for context checking</SubmitButton>

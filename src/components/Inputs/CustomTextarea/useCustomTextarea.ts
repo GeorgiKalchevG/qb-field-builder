@@ -1,5 +1,5 @@
 import { useFormContext, type ValidateResult } from 'react-hook-form'
-import { type ChangeEvent, type ClipboardEvent, type KeyboardEvent, useCallback, useState } from 'react'
+import { type ChangeEvent, type ClipboardEvent, type KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import type { SelectField } from '../../FieldBuilder/types.ts'
 
 export interface UseCustomTextareaProps {
@@ -19,8 +19,8 @@ export const useCustomTextarea = ({ maxChoices, required, maxLength }: UseCustom
         watch,
         setValue
     } = useFormContext<SelectField>()
-
-    const choices = watch('choices')
+    const unsafeChoices = watch('choices')
+    const choices = useMemo(() => unsafeChoices || [], [unsafeChoices])
 
     const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value || ''
@@ -31,7 +31,7 @@ export const useCustomTextarea = ({ maxChoices, required, maxLength }: UseCustom
     }, [clearErrors])
 
     const updateValue = useCallback((newValue: string[]) => {
-        setValue('choices', newValue)
+        setValue('choices', newValue, { shouldDirty: true })
         clearErrors('choices')
     }, [clearErrors, setValue])
 
@@ -99,7 +99,7 @@ export const useCustomTextarea = ({ maxChoices, required, maxLength }: UseCustom
     const validate = {
         content: (value: string[], formValues: SelectField): ValidateResult => {
             if (formValues.default !== '') {
-                const isDefaultPresent = value?.some(c => c === formValues.default)
+                const isDefaultPresent = value.some(c => c === formValues.default)
                 if (value.length >= maxChoices && !isDefaultPresent) {
                     return `Limit (${maxChoices}) reached, please remove ${value.length - maxChoices + 1} to add the default value`
                 }
